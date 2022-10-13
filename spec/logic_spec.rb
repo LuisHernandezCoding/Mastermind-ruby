@@ -10,7 +10,7 @@ describe Logic do
   end
   describe '#generate_code' do
     it 'generates a random code of 4 colors' do
-      expect(logic.generate_code).to be_a(Array)
+      expect(logic.generate_code(4).length).to eql(4)
     end
   end
   describe '#check_code' do
@@ -18,15 +18,15 @@ describe Logic do
       expect(logic.check_code('rgby')).to eq(true)
     end
     it 'checks if the code is not a valid code' do
-      expect(logic.check_code('rgbyy')).to eq(false)
+      expect(logic.check_code('rgbo')).to eq(false)
     end
   end
   describe '#check_guess' do
     it 'checks if the guess is a valid guess' do
-      expect(logic.check_guess('rgby')).to eq(true)
+      expect(logic.check_guess('rgby', 4)).to eq(true)
     end
     it 'checks if the guess is not a valid guess' do
-      expect(logic.check_guess('rgbyy')).to eq(false)
+      expect(logic.check_guess('rgbyy', 4)).to eq(false)
     end
   end
   describe '#check_win' do
@@ -54,14 +54,6 @@ describe Logic do
     end
     it 'checks if the guess has a color match' do
       expect(logic.check_color_match('rgby', 'rops')).to eq(1)
-    end
-  end
-  describe '#check_guess_length' do
-    it 'checks if the guess is the correct length' do
-      expect(logic.check_guess_length('rgby')).to eq(true)
-    end
-    it 'checks if the guess is not the correct length' do
-      expect(logic.check_guess_length('rgbyy')).to eq(false)
     end
   end
 end

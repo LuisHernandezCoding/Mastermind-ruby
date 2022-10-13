@@ -15,7 +15,7 @@ class Logic
   end
 
   def check_guess(guess, size)
-    guess.each { |color| return false unless @colors.include?(color) && guess.length == size }
+    guess.chars.each { |color| return false unless @colors.include?(color) && guess.length == size }
     true
   end
 
@@ -25,13 +25,13 @@ class Logic
 
   def check_exact_match(guess, code)
     exact_match = 0
-    guess.each_with_index { |color, index| exact_match += 1 if color == code[index] }
+    guess.chars.each_with_index { |color, index| exact_match += 1 if color == code[index] }
     exact_match
   end
 
   def check_color_match(guess, code)
     color_match = 0
-    guess.each do |color|
+    guess.chars.each do |color|
       color_match += 1 if code.include?(color)
     end
     color_match

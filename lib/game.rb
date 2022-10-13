@@ -1,3 +1,6 @@
+require_relative '../lib/logic'
+require_relative '../lib/display'
+
 class Game
   attr_reader :guesses, :guess, :code, :logic
 
