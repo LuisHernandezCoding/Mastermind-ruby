@@ -16,6 +16,8 @@ The main goal is to put into practice main concepts from Object Oriented Program
 - Each guess is made by placing a row of code pegs on the decoding board. 
 - Once placed, the code maker provides feedback by answering how much guess are exact correct, and how much are color correct
 
+![Game Preview](./assets/preview.png?raw=true "Game Preview")
+
 ## Built With
 
 - Ruby v 3.1.2p20
