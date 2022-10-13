@@ -1,5 +1,4 @@
 require_relative 'board'
-require_relative 'cursor'
 require_relative 'colors'
 
 TITLE = 'Mastermind Game'.bold.center(55)
@@ -14,13 +13,11 @@ FRAME = ('+' * 50).bg_black.bold
 BLINK = '++'.bg_black.bold
 
 class Display
-  attr_reader :cursor
   attr_accessor :message, :message2, :instructions, :board, :size, :attempts, :exact_match, :color_match
   attr_writer :game_started, :correct_guess, :length_match
 
   def initialize
     @board = Board.new
-    @cursor = Cursor.new([0, 0], @board)
     @message = ''
     @message2 = ''
     @game_started = false
