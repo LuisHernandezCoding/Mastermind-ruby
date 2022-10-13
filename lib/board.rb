@@ -11,7 +11,7 @@ class Board
   end
 
   def add_guess(guess, row)
-    @grid[row] = guess
+    @grid[row] = guess.chars
   end
 
   def clear

@@ -9,12 +9,12 @@ The main goal is to put into practice main concepts from Object Oriented Program
 
 ###### Behavior
 
-- The first player, the codemaker (in this case the computer), chooses a pattern of code pegs. 
+- The first player, the code maker (in this case the computer), chooses a pattern of code pegs. 
 - Duplicates and blanks are allowed depending on the game mode. 
 - The second player, the codebreaker (the real player), tries to guess the pattern, in both order and color. 
 - There is a difficulty parameter so it can change the code size from 4 at beginner up to 8
 - Each guess is made by placing a row of code pegs on the decoding board. 
-- Once placed, the codemaker provides feedback by answering how much guess are exact correct, and how much are color correct
+- Once placed, the code maker provides feedback by answering how much guess are exact correct, and how much are color correct
 
 ## Built With
 

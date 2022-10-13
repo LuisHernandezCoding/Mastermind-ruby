@@ -11,7 +11,7 @@ class Game
     @logic = Logic.new
     @display = Display.new
     @size = 'Undefined'
-    @atempts = 'Undefined'
+    @attempts = 'Undefined'
   end
 
   def start
@@ -45,7 +45,7 @@ class Game
 
   def set_difficulty_values(size, attempts)
     @size = @display.size = size
-    @atempts = @display.attempts = attempts
+    @attempts = @display.attempts = attempts
     @display.board.set_config(size, attempts)
     @display.exact_match = Array.new(attempts, ' ')
     @display.color_match = Array.new(attempts, ' ')
@@ -56,15 +56,15 @@ class Game
     @code = @logic.generate_code(@size)
     @guess = @logic.generate_code(@size)
     @display.game_started = true
-    until @guesses == @atempts
+    until @guesses == @attempts
       ask_for_guess
       check_guess
-      check_win
       check_exact_match(@guesses)
       check_color_match(@guesses)
+      check_win
     end
     @display.message = 'You have run out of guesses. You lose!'
-    @display.message2 = "The code was #{@code.join}."
+    @display.message2 = "The code was #{@code}."
     @display.update
     sleep(2)
     @display.message = 'Would you like to (p)lay again or (q)uit?'
@@ -78,11 +78,11 @@ class Game
     @display.message = 'What is your guess?'
     @display.message2 = "Enter #{@size} colors (r)ed, (g)reen, (b)lue, (y)ellow."
     @display.update
-    @guess = gets.chomp.downcase.chars
-    until @logic.check_guess(@guess, @size)
+    @guess = gets.chomp.downcase
+    until @guess.length == @size && @logic.check_guess(@guess, @size)
       @display.message = 'Invalid guess!'
       @display.update
-      @guess = gets.chomp.downcase.chars
+      @guess = gets.chomp.downcase
     end
     @display.board.add_guess(@guess, @guesses)
     @guesses += 1
@@ -104,6 +104,7 @@ class Game
     @display.message = 'You win!'
     @display.message2 = 'Would you like to (p)lay again or (q)uit?'
     @display.update
+
     awnser = gets.chomp
     return start if awnser == 'p'
 

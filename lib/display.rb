@@ -11,7 +11,7 @@ SIDE_LINE = ' ' * 12
 
 FULL_LINE = MARGIN + (' ' * 72)
 FRAME = ('+' * 50).bg_black.bold
-BLINK_SYMBOL = '++'.bg_black.bold
+BLINK = '++'.bg_black.bold
 
 class Display
   attr_reader :cursor
@@ -26,7 +26,7 @@ class Display
     @game_started = false
     @instructions = false
     @size = 'Undefined'
-    @atempts = 'Undefined'
+    @attempts = 'Undefined'
     @exact_match = []
     @color_match = []
   end
@@ -51,16 +51,27 @@ class Display
 
   def print_grid
     @board.grid.reverse.each_with_index do |row, i|
-      row_content = row.map do |cell|
-        '  -  '.bg_magenta.bold
-        '  R  '.bg_red.bold if cell == 'r'
-        '  G  '.bg_green.bold if cell == 'g'
-        '  B  '.bg_blue.bold if cell == 'b'
-        '  Y  '.bg_orange.bold if cell == 'y'
-      end
+      row_content = get_row_content(row)
       choces = MARGIN + "#{SIDE}│ #{@board.grid.length - i} ->#{row_content.join}".bg_magenta.bold
       results = "│ │  >#{@exact_match[i]}  │  │  >#{@color_match[i]}  │#{SIDE}".bg_magenta.bold
       puts choces + results
+    end
+  end
+
+  def get_row_content(row)
+    row.map do |cell|
+      case cell
+      when 'r'
+        '  R  '.bg_red.bold
+      when 'g'
+        '  G  '.bg_green.bold
+      when 'b'
+        '  B  '.bg_blue.bold
+      when 'y'
+        '  Y  '.bg_orange.bold
+      else
+        '  -  '.bg_magenta.bold
+      end
     end
   end
 
@@ -68,8 +79,8 @@ class Display
     puts
     puts MARGIN + (' ' * 72).bg_red
     puts MARGIN + (' ' * 11).bg_red + FRAME + (' ' * 11).bg_red
-    puts MARGIN + 'Size:'.center(11).bg_red + BLINK_SYMBOL + TITLE + BLINK_SYMBOL + 'Attepmts:'.center(11).bg_red
-    puts MARGIN + @size.to_s.center(11).bg_red + BLINK_SYMBOL + CREDITS + BLINK_SYMBOL + @atempts.to_s.center(11).bg_red
+    puts MARGIN + 'Size:'.center(11).bg_red + BLINK + TITLE + BLINK + 'Attepmts:'.center(11).bg_red
+    puts MARGIN + @size.to_s.center(11).bg_red + BLINK + CREDITS + BLINK + @attempts.to_s.center(11).bg_red
     puts MARGIN + (' ' * 11).bg_red + FRAME + (' ' * 11).bg_red
     puts MARGIN + ('_' * 72).bg_red.bold
   end

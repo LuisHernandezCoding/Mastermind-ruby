@@ -6,7 +6,7 @@ class Logic
   def generate_code(size)
     code = []
     size.times { code << @colors.sample }
-    code
+    code.join
   end
 
   def check_code(code)
