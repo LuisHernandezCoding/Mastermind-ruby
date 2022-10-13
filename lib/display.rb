@@ -26,7 +26,7 @@ class Display
     @game_started = false
     @instructions = false
     @size = 'Undefined'
-    @attempts = 'Undefined'
+    @atempts = 'Undefined'
     @exact_match = []
     @color_match = []
   end
@@ -45,32 +45,23 @@ class Display
     puts MARGIN + (SIDE + "┌─────#{'─' * @size * 5}┐ ┌Exacts┐  ┌Colors┐" + SIDE).bg_magenta.bold
     row_title = @size.times.map { |i| "  #{i + 1}  " }.join
     puts MARGIN + (SIDE + "│     #{row_title}│ │      │  │      │" + SIDE).bg_magenta.bold
+    print_grid
+    puts MARGIN + (SIDE + "└─────#{'─' * @size * 5}┘ └──────┘  └──────┘" + SIDE).bg_magenta.bold
+  end
+
+  def print_grid
     @board.grid.reverse.each_with_index do |row, i|
       row_content = row.map do |cell|
-        case cell
-        when 'r'
-          '  R  '.bg_red.bold
-        when 'g'
-          '  G  '.bg_green.bold
-        when 'b'
-          '  B  '.bg_blue.bold
-        when 'y'
-          '  Y  '.bg_orange.bold
-        else
-          '  -  '.bg_magenta.bold
-        end
+        '  -  '.bg_magenta.bold
+        '  R  '.bg_red.bold if cell == 'r'
+        '  G  '.bg_green.bold if cell == 'g'
+        '  B  '.bg_blue.bold if cell == 'b'
+        '  Y  '.bg_orange.bold if cell == 'y'
       end
-
-      left = MARGIN + "#{SIDE}│ ".bg_magenta.bold
-      choces = "#{@board.grid.length - i} ->#{row_content.join}".bg_magenta.bold
-
-      results = "│ │  >#{@exact_match[i]}  │  │  >#{@color_match[i]}  │".bg_magenta.bold
-
-      right = SIDE.bg_magenta.bold
-      final = left + choces + results + right
-      puts final
+      choces = MARGIN + "#{SIDE}│ #{@board.grid.length - i} ->#{row_content.join}".bg_magenta.bold
+      results = "│ │  >#{@exact_match[i]}  │  │  >#{@color_match[i]}  │#{SIDE}".bg_magenta.bold
+      puts choces + results
     end
-    puts MARGIN + (SIDE + "└─────#{'─' * @size * 5}┘ └──────┘  └──────┘" + SIDE).bg_magenta.bold
   end
 
   def show_header
@@ -78,7 +69,7 @@ class Display
     puts MARGIN + (' ' * 72).bg_red
     puts MARGIN + (' ' * 11).bg_red + FRAME + (' ' * 11).bg_red
     puts MARGIN + 'Size:'.center(11).bg_red + BLINK_SYMBOL + TITLE + BLINK_SYMBOL + 'Attepmts:'.center(11).bg_red
-    puts MARGIN + @size.to_s.center(11).bg_red + BLINK_SYMBOL + CREDITS + BLINK_SYMBOL + @attempts.to_s.center(11).bg_red
+    puts MARGIN + @size.to_s.center(11).bg_red + BLINK_SYMBOL + CREDITS + BLINK_SYMBOL + @atempts.to_s.center(11).bg_red
     puts MARGIN + (' ' * 11).bg_red + FRAME + (' ' * 11).bg_red
     puts MARGIN + ('_' * 72).bg_red.bold
   end

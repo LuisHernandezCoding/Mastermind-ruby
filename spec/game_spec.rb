@@ -7,5 +7,5 @@ describe Game do
     it 'creates a new instance of the Game class' do
       expect(game).to be_a(Game)
     end
-  end  
+  end
 end

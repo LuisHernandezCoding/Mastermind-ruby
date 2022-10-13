@@ -11,7 +11,7 @@ class Game
     @logic = Logic.new
     @display = Display.new
     @size = 'Undefined'
-    @attempts = 'Undefined'
+    @atempts = 'Undefined'
   end
 
   def start
@@ -45,7 +45,7 @@ class Game
 
   def set_difficulty_values(size, attempts)
     @size = @display.size = size
-    @attempts = @display.attempts = attempts
+    @atempts = @display.attempts = attempts
     @display.board.set_config(size, attempts)
     @display.exact_match = Array.new(attempts, ' ')
     @display.color_match = Array.new(attempts, ' ')
@@ -56,7 +56,7 @@ class Game
     @code = @logic.generate_code(@size)
     @guess = @logic.generate_code(@size)
     @display.game_started = true
-    until @guesses == @attempts
+    until @guesses == @atempts
       ask_for_guess
       check_guess
       check_win

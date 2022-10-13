@@ -1,4 +1,5 @@
 # Extention to string class to add color to
+# rubocop:disable Style/SingleLineMethods
 class String
   def black; "\e[30m#{self}\e[0m" end
   def red; "\e[31m#{self}\e[0m" end
@@ -26,3 +27,4 @@ class String
 
   def no_colors; gsub(/\e\[\d+m/, '') end
 end
+# rubocop:enable Style/SingleLineMethods

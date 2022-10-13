@@ -1,6 +1,6 @@
 require_relative '../lib/logic'
 
-# CREATE TESTS FOR MASTERMIND GAME LOGIC 
+# CREATE TESTS FOR MASTERMIND GAME LOGIC
 describe Logic do
   let(:logic) { Logic.new }
   describe '#initialize' do
