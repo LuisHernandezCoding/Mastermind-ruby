@@ -32,7 +32,7 @@ class Display
   end
 
   def update
-    system('clear')
+    system('clear') or system('cls')
     show_header
     show_instructions if @instructions
     show_message unless @message.empty? && @message2.empty?
